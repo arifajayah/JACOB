@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Menarik</title>
+    <style>
+        /* Gaya CSS untuk membuat tampilan yang menarik */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .content {
+            margin-top: 200px;
+            line-height: 1.6;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Selamat Datang di Website Menarik</h1>
+    </header>
+    <div class="container">
+        <div class="content">
+
+            <h2>Ini adalah konten utama website.</h2>
+            <p>Anda dapat menambahkan berbagai informasi menarik di sini.</p>
+            <p>Website ini dibuat dengan HTML dan CSS sederhana.</p>
+        <img> 
+        </div>
+    </div>
+    <footer>
+        <p>Hak Cipta &copy; 2024 Website Menarik</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Gambar HTML</title>
+    <style>
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 500%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contoh Gambar di Halaman Web</h1>
+        <img src="https://example.com/path-to-your-image.jpg" alt="Deskripsi Gambar">
+        <p>Ini adalah contoh gambar yang ditampilkan di halaman web.</p>
+    </div>
+</body>
+</html>
