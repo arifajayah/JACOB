@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gameboy Birthday</title>      
+
+<style>
+/* ===== BACKGROUND VIDEO ===== */
+.bg-video{
+ position:fixed;
+ inset:0;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ z-index:-2;
+}
+.overlay{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.35);
+ z-index:-1;
+}
+
+/* ===== BODY ===== */
+body{
+ margin:0;
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ font-family:'Courier New', monospace;
+ overflow:hidden;
+}
+
+/* ===== GAMEBOY ===== */
+.gameboy{
+ width:340px;
+ background:#e6e6e6;
+ border-radius:30px;
+ padding:15px;
+ box-shadow:0 25px 60px rgba(0,0,0,.6);
+}
+
+/* ===== SCREEN ===== */
+.screen{
+ background:url("you.jpg") center/cover no-repeat;
+ border:7px solid #444;
+ border-radius:12px;
+ height:150px;
+ overflow:hidden;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ position:relative;
+}
+
+/* SCREEN CONTENT */
+.screen img,
+.screen video{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:none;
+}
+
+/* ===== MESSAGE CARD ===== */
+.message-card{
+ width:100%;
+ height:100%;
+ background:url("hbd1.jpg") center/cover no-repeat;
+ display:none;
+ position:relative;
+}
+.message-text{
+ position:absolute;
+ inset:0;
+ background:rgba(0,0,0,.35);
+ color:white;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:10px;
+}
+.message-text h2{margin:0;font-size:18px;}
+.message-text p{margin:5px 0 0;font-size:12px;}
+
+/* ===== DISC / MUSIC COVER ===== */
+.disc{
+ width:120px;
+ height:120px;
+ background:url("you 1.jpg") center/cover no-repeat;
+ border-radius:50%;
+ display:none;
+ animation:spin 4s linear infinite;
+ box-shadow:0 0 0 6px #111 inset, 0 0 10px rgba(0,0,0,.6);
+ position:relative;
+ overflow:hidden;
+}
+.disc.pause{animation-play-state:paused}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.disc img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ border-radius:50%;
+}
+
+.disc::after{
+ content:'';
+ width:18px;height:18px;
+ background:#ccc;
+ border-radius:50%;
+ position:absolute;
+ top:50%;left:50%;
+ transform:translate(-50%,-50%);
+}
+
+/* ===== MENU ===== */
+.menu{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:15px;
+}
+.menu button{
+ padding:10px;
+ border:none;
+ border-radius:8px;
+ font-weight:bold;
+ background:#444;
+ color:white;
+ cursor:pointer;
+}
+.menu button:active{transform:scale(.95)}
+
+/* ===== CONTROLS ===== */
+.controls{
+ display:flex;
+ justify-content:space-between;
+ margin-top:25px;
+}
+
+/* ===== D-PAD ===== */
+.dpad{
+ width:90px;height:90px;
+ position:relative;
+}
+.dpad div{
+ position:absolute;
+ background:#333;
+ border-radius:6px;
+ cursor:pointer;
+ transition:.1s;
+}
+.dpad div:active{transform:scale(.9)}
+.dpad .up,
+.dpad .down{
+ width:30px;height:90px;left:30px;
+}
+.dpad .left,
+.dpad .right{
+ width:90px;height:30px;top:30px;
+}
+.dpad .center{
+ width:30px;height:30px;
+ background:#111;
+ border-radius:50%;
+ top:30px;left:30px;
+}
+
+/* ===== BUTTONS ===== */
+.buttons-right{
+ position:relative;
+ width:120px;height:120px;
+}
+.btn-round{
+ width:45px;height:45px;
+ border-radius:50%;
+ background:#111;
+ color:#fff;
+ font-weight:bold;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ cursor:pointer;
+ position:absolute;
+}
+.btn-round:active{transform:scale(.9)}
+#btnA{ right:0; top:20px;}
+#btnB{ right:30px; top:60px;}
+#btnC{ left:30px; top:20px;}
+#btnD{ left:0; top:60px;}
+</style>
+</head>
+
+<body>
+
+<video class="bg-video" src="bg-video.mp4" autoplay muted loop playsinline></video>
+<div class="overlay"></div>
+
+<div class="gameboy">
+
+ <div class="screen">
+   <div class="message-card" id="messageCard">
+    <div class="message-text">
+     <h2>Selamat Ulang Tahun</h2>
+     <p>Di hari lahirmu ini, aku ingin kamu tahu betapa bersyukurnya aku memiliki kamu. Kamu bukan hanya seseorang yang aku cintai, tapi juga rumah yang menenangkan,<br>dan semua mimpimu tercapai 💖</p>
+    </div>
+   </div>
+
+   <img id="galleryImg" src="fiar3.jpeg">
+
+   <!-- MUSIC COVER -->
+   <div class="disc pause" id="disc">
+    <img id="musicCover" src="you.jpg">
+   </div>
+
+   <video id="video" src="vid1.mp4" loop playsinline></video>
+ </div>
+
+ <div class="menu">
+  <button onclick="showMessage()">MESSAGE</button>
+  <button onclick="showGallery()">GALLERY</button>
+  <button onclick="showMusic()">MUSIC</button>
+  <button onclick="showVideo()">VIDEO</button>
+ </div>
+
+ <div class="controls">
+  <div class="dpad">
+   <div class="up"></div>
+   <div class="down"></div>
+   <div class="left"></div>
+   <div class="right"></div>
+   <div class="center"></div>
+  </div>
+
+  <div class="buttons-right">
+   <div class="btn-round" id="btnA">A</div>
+   <div class="btn-round" id="btnB">B</div>
+   <div class="btn-round" id="btnC">C</div>
+   <div class="btn-round" id="btnD">D</div>
+  </div>
+ </div>
+
+</div>
+
+<audio id="music" src="abot.mpeg"></audio>
+<audio id="click" src="off"></audio>
+
+<script>
+const card=document.getElementById("messageCard");
+const img=document.getElementById("galleryImg");
+const disc=document.getElementById("disc");
+const cover = document.getElementById("musicCover");
+const video=document.getElementById("video");
+const music=document.getElementById("music");
+const click=document.getElementById("click");
+
+function s(){click.currentTime=0;click.play();}
+function hideAll(){
+ card.style.display="none";
+ img.style.display="none";
+ disc.style.display="none";
+ video.style.display="none";
+ video.pause();
+}
+
+function showMessage(){
+ s(); hideAll();
+ card.style.display="block";
+ music.pause();
+ disc.classList.add("pause");
+}
+function showGallery(){
+ s(); hideAll();
+ img.style.display="block";
+}
+function showMusic(){
+ s(); hideAll();
+ disc.style.display="block";
+ music.play();
+ disc.classList.remove("pause");
+}
+function showVideo(){
+ s(); hideAll();
+ video.style.display="block";
+ video.play();
+ music.pause();
+ disc.classList.add("pause");
+}
+
+btnA.onclick=showVideo;
+btnB.onclick=()=>video.paused?video.play():video.pause();
+btnC.onclick=()=>{
+ music.paused?music.play():music.pause();
+ disc.classList.toggle("pause");
+ disc.style.display="block";
+};
+btnD.onclick=showMessage;
+</script>
+
+</body>
+</html>
